@@ -32,15 +32,32 @@ std::string get_help_text() {
     "", \
       "json-where --help", \
       "", \
-      "Usage: ", \
+      "Usage:", \
       "  json-where <file> <line> <column>", \
       "  json-where -v or --version", \
       "  json-where -h or --help", \
       "", \
-      "Example: ", \
+      "Description:", \
+      "  json-where is a program which takes a file name and a position in", \
+      "  the file as input and prints the JSON path corresponding to that", \
+      "  position.", \
+      "", \
+      "  json-where can be integrated into your editor to print the JSON path", \
+      "  corresponding to the cursor position through a keybinding", \
+      "", \
+      "  Supported editors:", \
+      "    - vim: https://github.com/icyflame/json-where#inside-vim", \
+      "", \
+      "    If you would like to add support for your editor, please make a", \
+      "    pull-request on the GitHub repository with the instructions", \
+      "    for integrating json-where into your editor.", \
+      "", \
+      "Example:", \
       "  json-where input_file.json 14 23", \
       "  .k5.a[9]", \
       "", \
+      "Documentation:", \
+      "  GitHub: https://github.com/icyflame/json-where", \
       ""
   };
   return join(help_text, "\n");
