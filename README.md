@@ -2,6 +2,8 @@
 
 > Where are you inside a JSON file?
 
+![screenshot][13]
+
 ## TOC
 
 - [Usage][4]
@@ -21,8 +23,8 @@
 ### From the Command Line
 
 ```sh
-$ ./json-where file_name.json 13
-> .[0].nested_key.t1
+$ json-where large.json 250 14
+.[5].tags[3]
 ```
 
 ### Inside `vim`
@@ -128,3 +130,4 @@ Copyright (C) 2019 Siddharth Kannan <mail@siddharthkannan.in>
 [10]: https://github.com/giacomodrago/minijson_reader
 [11]: ./include/minijson/LICENSE.txt
 [12]: ./LICENSE
+[13]: ./img/screenshot.png
