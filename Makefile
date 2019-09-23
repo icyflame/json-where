@@ -1,3 +1,4 @@
 .PHONY: build
 build:
-	g++ -iquote include/ src/main.cpp -o json-where
+	mkdir -p bin
+	g++ -iquote include/ src/main.cpp -o bin/json-where
