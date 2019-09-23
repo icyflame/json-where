@@ -4,6 +4,7 @@
 
 #include "validation/validation.hpp"
 #include "nested_json/finder.hpp"
+#include "help_and_version/help_and_version.hpp"
 
 #define REQUIRED_ARGUMENTS 4
 
@@ -52,12 +53,37 @@ int get_offset(std::string file_contents, int line_number, int column) {
   return offset;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, const char* argv[]) {
+  // Check if user wants the version or the help text
+
+  if (argc == 2) {
+    std::string argument(argv[1]);
+
+    if (argument == std::string("-v") ||
+        argument == "--version") {
+      std::cout << get_version_text();
+      return 0;
+    }
+
+    if (argument == "-h" ||
+        argument == "--help") {
+      std::cout << get_help_text();
+      return 0;
+    }
+
+    std::cerr << "Invalid argument: " << argument << std::endl;
+    return 1;
+  }
+
   // Ensure that the arguments exist
   if (argc < REQUIRED_ARGUMENTS) {
-    std::cerr << "Missing arguments: Provided only " << argc << " arguments" << std::endl;
-    std::cerr << "Must provide at least " << REQUIRED_ARGUMENTS << " arguments" << std::endl;
-    return 3;
+    std::ostringstream ss;
+    ss << "Missing arguments: Provided only " << argc << " arguments"
+      << std::endl
+      << "Must provide at least " << REQUIRED_ARGUMENTS << " arguments"
+      << std::endl;
+    std::cerr << ss.str();
+    return 1;
   }
 
   // Get the arguments
