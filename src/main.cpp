@@ -55,10 +55,9 @@ int get_offset(std::string file_contents, int line_number, int column) {
 int main(int argc, char* argv[]) {
   // Ensure that the arguments exist
   if (argc < REQUIRED_ARGUMENTS) {
-    printf("Must provide at least %d arguments. Provided only %d arguments\n",
-        REQUIRED_ARGUMENTS, argc);
-    printf("Example: ./json-where <file-name> <line-number>");
-    return 1;
+    std::cerr << "Missing arguments: Provided only " << argc << " arguments" << std::endl;
+    std::cerr << "Must provide at least " << REQUIRED_ARGUMENTS << " arguments" << std::endl;
+    return 3;
   }
 
   // Get the arguments
@@ -74,24 +73,21 @@ int main(int argc, char* argv[]) {
   column = validate_int(arg_column);
   validate_line_and_column(line_number, column);
 
+  // Read file contents into memory
   std::ifstream ifs(file_name);
   std::string file_contents {
     std::istreambuf_iterator<char>(ifs),
       std::istreambuf_iterator<char>()
   };
 
+  // Get corresponding offset for the provided line number and column
   int offset = get_offset(file_contents, line_number, column);
 
-  printf("%s %d %d; Offset %d", file_name.c_str(), line_number, column, offset);
-
+  // Create the finder object
   const char* json_obj = file_contents.c_str();
-  nested_json::finder finder_obj(json_obj, strlen(json_obj)-1, offset);
+  nested_json::finder finder_obj(json_obj, strlen(json_obj)-1, offset, nested_json::Silent);
 
   std::string want_path = finder_obj.start();
-
-  std::cout << "----------------------------";
   std::cout << want_path << std::endl;
-
-  printf("\n");
 }
 

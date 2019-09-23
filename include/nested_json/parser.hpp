@@ -1,4 +1,5 @@
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -6,11 +7,17 @@
 #include "minijson/minijson_reader.hpp"
 
 namespace nested_json {
+  enum log_level_type {
+    Silent,
+    Verbose
+  };
+
   class parser {
     protected:
       const char* m_json_string;
       int m_length;
       std::vector<std::string> m_current_path;
+      log_level_type m_log_level;
 
     protected:
       virtual void handle_value(minijson::const_buffer_context &ctx, minijson::value &v) {
@@ -50,13 +57,14 @@ namespace nested_json {
       }
 
       void handle_final(minijson::const_buffer_context &ctx, minijson::value &v) {
-        std::cout << join(m_current_path, "")
+        std::ostringstream stringStream;
+        stringStream << join(m_current_path, "")
           << " = "
           << v.as_string()
           << " ("
           << minijson::value_type_string(v.type()).to_string()
-          << ")"
-          << std::endl;
+          << ")";
+        log(stringStream);
       }
 
       std::string join(std::vector<std::string> arr, std::string joining_string) {
@@ -70,16 +78,21 @@ namespace nested_json {
         return output;
       }
 
+      void log(std::ostringstream& ss) {
+        if (m_log_level == Verbose) {
+          std::cout << ss.str() << std::endl;
+        }
+      }
+
     public:
-      explicit parser(const char* json_string, int length) :
+      explicit parser(const char* json_string, int length, log_level_type log_level = Verbose) :
         m_json_string(json_string),
-        m_length(length) {
+        m_length(length),
+        m_log_level(log_level) {
         }
 
       void start() {
         minijson::const_buffer_context ctx(m_json_string, m_length);
-
-        std::cout << "BEGIN" << std::endl;
 
         switch (ctx.toplevel_type()) {
           case minijson::Array:
@@ -97,10 +110,8 @@ namespace nested_json {
         }
 
         if (m_current_path.size() != 0) {
-          std::cout << "Final size is not 0 => something went wrong" << std::endl;
+          std::cerr << "Final path size is not 0 => something went wrong while parsing that file" << std::endl;
         }
-
-        std::cout << "END" << std::endl;
       }
   }; // class parser
 } // namespace nested_json

@@ -16,8 +16,9 @@ namespace nested_json {
       explicit finder(
           const char* json_string,
           int str_length,
-          int want_offset) :
-        nested_json::parser(json_string, str_length),
+          int want_offset,
+          log_level_type log_level = Verbose) :
+        nested_json::parser(json_string, str_length, log_level),
         m_want_offset(want_offset) {
           m_want_path = "";
         }
