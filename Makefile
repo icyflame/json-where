@@ -1,6 +1,6 @@
 .PHONY: build
 build:
-	g++ -iquote src src/main.cpp -o json-where
+	g++ -iquote include/ src/main.cpp -o json-where
 
 .PHONY: run
 run:
