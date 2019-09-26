@@ -37,23 +37,27 @@ namespace nested_json {
         }
       }
 
+      void callback_array_handler(minijson::value v) {
+        m_current_path.push_back("[" + std::to_string(index) + "]");
+        handle_value(ctx, v);
+        m_current_path.pop_back();
+
+        index++;
+      }
+
       void handle_array(minijson::const_buffer_context &ctx) {
         int index = 0;
-        minijson::parse_array(ctx, [&](minijson::value v) {
-            m_current_path.push_back("[" + std::to_string(index) + "]");
-            handle_value(ctx, v);
-            m_current_path.pop_back();
+        minijson::parse_array(ctx, this.callback_array_handler);
+      }
 
-            index++;
-            });
+      void callback_object_handler(const char *k, minijson::value v) {
+        m_current_path.push_back("." + std::string(k));
+        handle_value(ctx, v);
+        m_current_path.pop_back();
       }
 
       void handle_object(minijson::const_buffer_context &ctx) {
-        minijson::parse_object(ctx, [&](const char *k, minijson::value v) {
-            m_current_path.push_back("." + std::string(k));
-            handle_value(ctx, v);
-            m_current_path.pop_back();
-            });
+        minijson::parse_object(ctx, this.callback_object_handler);
       }
 
       void handle_final(minijson::const_buffer_context &ctx, minijson::value &v) {
