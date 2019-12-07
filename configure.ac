@@ -12,10 +12,10 @@ AC_CONFIG_HEADERS([config.h])
 AC_PROG_CXX
 
 # Checks for libraries.
-LT_INIT
-AC_ENABLE_SHARED
-AC_DISABLE_STATIC
-AC_PROG_LIBTOOL(libtool)
+# LT_INIT
+# AC_ENABLE_SHARED
+# AC_DISABLE_STATIC
+# AC_PROG_LIBTOOL(libtool)
 
 # Checks for header files.
 AC_CHECK_HEADERS([stdint.h])
@@ -36,5 +36,5 @@ AC_CHECK_FUNCS([strtol])
 # AC_CONFIG_FILES([Makefile src/Makefile src/validation/Makefile
                  # src/help_and_version/Makefile src/nested_json/Makefile
                  # src/nested_json/minijson/Makefile])
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile src/Makefile])
 AC_OUTPUT
