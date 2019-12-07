@@ -71,12 +71,32 @@ nmap <leader>jw :echo JsonWhere()<cr>
 **Note:** For best results, call JsonWhere with the cursor on the first
 character in the JSON key or value.
 
-## Compile
+## Install
 
-`json-where` is written in C++. All the dependencies are included in this
-repository. You can compile this on any computer with g++ or clang.
+After compiling the module, you can put the binary in one of the folders which
+is in the `$PATH` variable of your shell.
 
-**Note:** Compile process has been tested on the following setups:
+```sh
+cp bin/json-where /usr/local/bin
+```
+
+## Compile from source
+
+`json-where` is written in C++ with C++11 feature. All the dependencies are
+included in this repository. You can compile this on any computer with g++ or
+clang++.
+
+### Compiling with `g++`
+
+You can run `make build` to compile with g++.
+
+```sh
+g++ -iquote include/ src/main.cpp -o json-where
+```
+
+### Environments
+
+Compile process has been tested in the following environments:
 
 1. Ubuntu 18.04 LTS with `make` and `g++`
     ```
@@ -88,28 +108,7 @@ repository. You can compile this on any computer with g++ or clang.
     g++ (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
     ```
 
-### Compiling with `make`
 
-```sh
-make
-```
-
-You can find the compiled binary at `bin/json-where`.
-
-### Compiling with `g++`
-
-```sh
-g++ -iquote include/ src/main.cpp -o json-where
-```
-
-## Install
-
-After compiling the module, you can put the binary in one of the folders which
-is in the `$PATH` variable of your shell.
-
-```sh
-cp bin/json-where /usr/local/bin
-```
 
 ## Credits
 
