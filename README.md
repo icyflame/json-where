@@ -4,15 +4,10 @@
 
 ![screenshot][13]
 
-## TOC
+## Contents
 
 - [Usage][4]
-    - [From the command line][5]
-    - [Inside `vim`][6]
-- [Compile][1]
-    - [Compiling with `make`][2]
-    - [Compiling with `g++`][3]
-- [Install][7]
+- [Compile from source][1]
 - [Credits][8]
 - [License][9]
 
@@ -71,44 +66,24 @@ nmap <leader>jw :echo JsonWhere()<cr>
 **Note:** For best results, call JsonWhere with the cursor on the first
 character in the JSON key or value.
 
-## Install
-
-After compiling the module, you can put the binary in one of the folders which
-is in the `$PATH` variable of your shell.
-
-```sh
-cp bin/json-where /usr/local/bin
-```
-
 ## Compile from source
 
-`json-where` is written in C++ with C++11 feature. All the dependencies are
-included in this repository. You can compile this on any computer with g++ or
-clang++.
-
-### Compiling with `g++`
-
-You can run `make build` to compile with g++.
+json-where is a C++ program that uses C++11 features. It can be compiled and
+installed using the standard GNU program compile process:
 
 ```sh
-g++ -iquote include/ src/main.cpp -o json-where
+$ ./configure
+$ make
+$ sudo make install
 ```
 
-### Environments
+By default, these commands will install the executable `json-where` to your
+computer's `/usr/local/bin/` folder. You can change the prefix by running the
+configure script with the `--prefix` option. More details about autoconf can be
+found on the [autoconf manual][2].
 
-Compile process has been tested in the following environments:
-
-1. Ubuntu 18.04 LTS with `make` and `g++`
-    ```
-    $ make --version
-    GNU Make 4.1
-    Built for x86_64-pc-linux-gnu
-
-    $ g++ --version
-    g++ (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
-    ```
-
-
+The configure script and other related files were generated using the
+[`autogen.sh`][3] script.
 
 ## Credits
 
@@ -123,9 +98,9 @@ Everything else in this repository is licensed under the MIT license.
 
 Copyright (C) 2019 Siddharth Kannan <mail@siddharthkannan.in>
 
-[1]: #compile
-[2]: #compiling-with-make
-[3]: #compiling-with-g++
+[1]: #compile-from-source
+[2]: https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.69/autoconf.html#Installation-Names
+[3]: ./autogen.sh
 [4]: #usage
 [5]: #from-the-command-line
 [6]: inside-vim
@@ -133,6 +108,6 @@ Copyright (C) 2019 Siddharth Kannan <mail@siddharthkannan.in>
 [8]: #credits
 [9]: #license
 [10]: https://github.com/giacomodrago/minijson_reader
-[11]: ./include/minijson/LICENSE.txt
+[11]: ./src/nested_json/minijson/LICENSE.txt
 [12]: ./LICENSE
 [13]: ./img/screenshot.png
