@@ -7,6 +7,8 @@
 ## Contents
 
 - [Usage][4]
+    - [Command line][5]
+    - [Vim][6]
 - [Compile from source][1]
 - [Credits][8]
 - [License][9]
@@ -16,7 +18,7 @@
 `json-where` can be used from the command line. You can also set it up to run
 using a keybinding inside the editor of your choice.
 
-### From the Command Line
+### Command line
 
 ```sh
 # json-where file-name line column
@@ -24,11 +26,10 @@ $ json-where test.json 250  14
 .[5].tags[3]
 ```
 
-### Inside `vim`
+### Vim
 
-You can also invoke `json-where` from `vim`. Once you build `json-where` and put
-the executable in your `PATH`, you can use this function to invoke it based on
-your cursor position.
+After installing json-where, you can use this function to invoke it based on
+your cursor position from within vim.
 
 ```vim
 function JsonWhere()
@@ -68,8 +69,8 @@ character in the JSON key or value.
 
 ## Compile from source
 
-json-where is a C++ program that uses C++11 features. It can be compiled and
-installed using the standard GNU program compile process:
+json-where is a C++11 program. It can be compiled and installed using the
+standard GNU program compile process:
 
 ```sh
 $ ./configure
@@ -77,17 +78,18 @@ $ make
 $ sudo make install
 ```
 
-By default, these commands will install the executable `json-where` to your
-computer's `/usr/local/bin/` folder. You can change the prefix by running the
-configure script with the `--prefix` option. More details about autoconf can be
-found on the [autoconf manual][2].
+By default, these commands will install the executable `json-where` inside
+`/usr/local/bin/`. You can change the destination by running the configure
+script with the `--prefix` option. Other options that you can pass to the
+configure script can be found on the [autoconf manual][2].
 
-The configure script and other related files were generated using the
+The configure script and other autotools-related files were generated using the
 [`autogen.sh`][3] script.
 
 ## Credits
 
 - [`giacomodrago/minijson_reader`][10]
+- [Using GNU autotools to distribute C++ programs][14]
 
 ## License
 
@@ -102,8 +104,8 @@ Copyright (C) 2019 Siddharth Kannan <mail@siddharthkannan.in>
 [2]: https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.69/autoconf.html#Installation-Names
 [3]: ./autogen.sh
 [4]: #usage
-[5]: #from-the-command-line
-[6]: inside-vim
+[5]: #command-line
+[6]: #vim
 [7]: #install
 [8]: #credits
 [9]: #license
@@ -111,3 +113,4 @@ Copyright (C) 2019 Siddharth Kannan <mail@siddharthkannan.in>
 [11]: ./src/nested_json/minijson/LICENSE.txt
 [12]: ./LICENSE
 [13]: ./img/screenshot.png
+[14]: https://digitalleaves.com/blog/2017/12/build-cross-platform-c-project-autotools/
