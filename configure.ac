@@ -9,6 +9,7 @@ AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
+: ${CXXFLAGS="-std=c++11"}
 AC_PROG_CXX
 
 # Checks for libraries.
