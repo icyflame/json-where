@@ -3,7 +3,7 @@ ACLOCAL_AMFLAGS = $(ACLOCAL_FLAGS)
 
 SUBDIRS = validation nested_json help_and_version
 
-bin_PROGRAMS = helloWorld
+bin_PROGRAMS = json-where
 
-helloWorld_SOURCES = main.cpp
-helloWorld_LDADD = validation.la nested_json.la help_and_version.la
+json_where_SOURCES = main.cpp
+json_where_LDADD = libvalidation.la libnested_json.la libhelp_and_version.la
