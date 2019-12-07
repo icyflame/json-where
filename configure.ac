@@ -33,7 +33,8 @@ AC_FUNC_STRTOD
 AC_CHECK_FUNCS([strtol])
 
 # AC_CONFIG_FILES([tmp/testing/minijson_reader/Makefile])
-AC_CONFIG_FILES([Makefile src/Makefile src/validation/Makefile
-                 src/help_and_version/Makefile src/nested_json/Makefile
-                 src/nested_json/minijson/Makefile])
+# AC_CONFIG_FILES([Makefile src/Makefile src/validation/Makefile
+                 # src/help_and_version/Makefile src/nested_json/Makefile
+                 # src/nested_json/minijson/Makefile])
+AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
