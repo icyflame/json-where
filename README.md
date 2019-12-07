@@ -18,25 +18,29 @@
 
 ## Usage
 
-`json-where` can be used from the command line or from inside your editor.
+`json-where` can be used from the command line. You can also set it up to run
+using a keybinding inside the editor of your choice.
 
 ### From the Command Line
 
 ```sh
-$ json-where large.json 250 14
+# json-where file-name line column
+$ json-where test.json 250  14
 .[5].tags[3]
 ```
 
 ### Inside `vim`
 
-You can add the following function inside your `.vimrc` file.
-
-**Note:** You _must_ have the `json-where` binary in your `PATH` for the
-function to work properly. If you have the binary somewhere else, you can change
-the function to call that absolute path instead.
+You can also invoke `json-where` from `vim`. Once you build `json-where` and put
+the executable in your `PATH`, you can use this function to invoke it based on
+your cursor position.
 
 ```vim
 function JsonWhere()
+    if executable("json-where") == 0
+        return 'ERROR: json-where not found in PATH'
+    endif
+
     let cursor = getcurpos()
     let lnum = cursor[1]
     let colnum = cursor[2]
@@ -58,16 +62,19 @@ function JsonWhere()
 endfunction
 ```
 
-You can add a key-binding for this function:
+You can attach a keybinding to this function in normal mode:
 
 ```vim
 nmap <leader>jw :echo JsonWhere()<cr>
 ```
 
+**Note:** For best results, call JsonWhere with the cursor on the first
+character in the JSON key or value.
+
 ## Compile
 
-`json-where` is a C++ module. All the dependencies are included in this
-repository. You can compile this on any computer with g++.
+`json-where` is written in C++. All the dependencies are included in this
+repository. You can compile this on any computer with g++ or clang.
 
 **Note:** Compile process has been tested on the following setups:
 
@@ -87,7 +94,7 @@ repository. You can compile this on any computer with g++.
 make
 ```
 
-The compiled `json-where` binary is put inside the `bin/` folder.
+You can find the compiled binary at `bin/json-where`.
 
 ### Compiling with `g++`
 
@@ -97,9 +104,8 @@ g++ -iquote include/ src/main.cpp -o json-where
 
 ## Install
 
-After you have compiled the module, you must put the binary in one of the
-folders which is in the `$PATH` variable of your shell to make it accessible
-from everywhere.
+After compiling the module, you can put the binary in one of the folders which
+is in the `$PATH` variable of your shell.
 
 ```sh
 cp bin/json-where /usr/local/bin
