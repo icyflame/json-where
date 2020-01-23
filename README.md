@@ -2,7 +2,7 @@
 
 > Where are you inside a JSON file?
 
-![screenshot][13]
+[![asciicast](https://asciinema.org/a/295553.svg)](https://asciinema.org/a/295553)
 
 ## Contents
 
@@ -11,6 +11,7 @@
     - [Vim][6]
 - [Compile from source][1]
 - [Credits][8]
+- [TODO][15]
 - [License][9]
 
 ## Usage
@@ -98,6 +99,11 @@ configure script can be found on the [autoconf manual][2].
 - [`giacomodrago/minijson_reader`][10]
 - [Using GNU autotools to distribute C++ programs][14]
 
+## TODO
+
+- [ ] Move the Vim function in this readme to it's own Vim plugin
+- [ ] Man page
+
 ## License
 
 `minijson_reader`'s LICENSE is included [here][11] and appended to the
@@ -121,3 +127,4 @@ Copyright (C) 2019 Siddharth Kannan <mail@siddharthkannan.in>
 [12]: ./LICENSE
 [13]: ./img/screenshot.png
 [14]: https://digitalleaves.com/blog/2017/12/build-cross-platform-c-project-autotools/
+[15]: #todo
