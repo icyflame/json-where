@@ -24,3 +24,9 @@ src/Makefile.in
 src/rlwrap
 stamp-h1
 tools/
+compile
+depcomp
+install-sh
+ltmain.sh
+m4/
+missing
