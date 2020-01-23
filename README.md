@@ -34,16 +34,23 @@ your cursor position from within vim.
 ```vim
 function JsonWhere()
     if executable("json-where") == 0
-        return 'ERROR: json-where not found in PATH'
+        return 'ERROR: json-where not found'
     endif
 
     let cursor = getcurpos()
     let lnum = cursor[1]
     let colnum = cursor[2]
 
+    let filename = expand('%:p')
+    if len(filename) == 0
+        let filename = tempname() + ".json"
+        silent exe("write! " . filename)
+        silent exe("edit " . filename)
+    endif
+
     let cmd_list = [ ]
     let cmd_list += [ 'json-where' ]
-    let cmd_list += [ expand('%:p') ]
+    let cmd_list += [ filename ]
     let cmd_list += [ lnum ]
     let cmd_list += [ colnum ]
 
@@ -78,13 +85,13 @@ $ make
 $ sudo make install
 ```
 
+When this repository is cloned, the configure script will be missing. You can
+create it by running the [`autogen.sh`][3] script.
+
 By default, these commands will install the executable `json-where` inside
 `/usr/local/bin/`. You can change the destination by running the configure
 script with the `--prefix` option. Other options that you can pass to the
 configure script can be found on the [autoconf manual][2].
-
-The configure script and other autotools-related files were generated using the
-[`autogen.sh`][3] script.
 
 ## Credits
 
