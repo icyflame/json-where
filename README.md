@@ -4,6 +4,11 @@
 
 [![asciicast](https://asciinema.org/a/295553.svg)](https://asciinema.org/a/295553)
 
+**Note:** I place the cursor on various keys in the JSON file and then type the
+mapping `<leader>jw`, which invokes the `JsonWhere()` vim function, which in
+turn invokes the json-where executable. You can look at the bottom left corner
+of the video to see the JSON path being printed to the screen.
+
 ## Contents
 
 - [Usage][4]
